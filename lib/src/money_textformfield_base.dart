@@ -83,7 +83,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
 
     // fmf handler
     _fmf = _fmf.copyWith(
-        amount: wsm.amount,
+        amount: wsm.amount.toDouble(),
         symbol: wsm.currencySymbol,
         fractionDigits: wsm.fractionDigits,
         thousandSeparator: wsm.thousandSeparator,
