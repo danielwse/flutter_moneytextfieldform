@@ -147,7 +147,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
             inputFormatters: ws.inputFormatters,
             validator: ws.validator,
             enabled: ws.enabled,
-            textAlign: TextAlign.right,
+            textAlign: TextAlign.center,
             style: wsa.inputStyle,
             keyboardType:
                 TextInputType.numberWithOptions(decimal: false, signed: false),
