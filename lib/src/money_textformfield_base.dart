@@ -98,7 +98,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
       _useInternalController = true;
     }
 
-    ws.controller.text = '${_fmf.amount}';
+    ws.controller.text = '0';
     ws.controller.addListener(_onChanged);
 
     // inputFormatter handler
@@ -144,6 +144,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           TextFormField(
+            autovalidate: true, 
             controller: ws.controller,
             inputFormatters: ws.inputFormatters,
             validator: ws.validator,
@@ -153,6 +154,11 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
             keyboardType:
                 TextInputType.numberWithOptions(),
             decoration: InputDecoration(
+              suffixIcon:  IconButton(
+                      icon: Icon(Icons.remove),
+                      onPressed: () {
+                        ws.controller.clear();
+                      }),
               icon: wsa.icon,
               labelText: wsa.labelText,
               hintText: wsa.hintText,
@@ -177,7 +183,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
 /// An utility instance
 class _Utility {
   /// return Zero with spesific fraction digits length
-  static double zeroWithFractionDigits({int fractionDigits = 0}) {
+  static double zeroWithFractionDigits({int fractionDigits = 2}) {
     return double.parse(0.toStringAsFixed(fractionDigits));
   }
 
