@@ -150,15 +150,16 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
             inputFormatters: ws.inputFormatters,
             validator: ws.validator,
             enabled: ws.enabled,
-            textAlign: TextAlign.right,
+            textAlign: TextAlign.center,
             style: wsa.inputStyle,
             keyboardType:
                 TextInputType.numberWithOptions(),
             decoration: InputDecoration(
               suffixIcon:  IconButton(
-                      icon: Icon(Icons.remove),
+                      icon: Icon(Icons.clear),
                       onPressed: () {
                         ws.controller.clear();
+                        ws.controller.text = '0';
                       }),
               icon: wsa.icon,
               labelText: wsa.labelText,
