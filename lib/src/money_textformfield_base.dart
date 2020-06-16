@@ -98,7 +98,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
       _useInternalController = true;
     }
 
-    ws.controller.text = '0';
+    ws.controller.text = '${_fmf.amount}';
     ws.controller.addListener(_onChanged);
 
     // inputFormatter handler
@@ -122,7 +122,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
     MoneyTextFormFieldSettings ws = widget.settings;
 
     _fmf = _fmf.copyWith(
-        amount: _Utility.stringToDouble((double.parse(ws.controller.text) * widget.maxSpend).toString() ,
+        amount: _Utility.stringToDouble((double.parse(ws.controller.text) * 0.01 * widget.maxSpend).toString() ,
             fractionDigits: ws.moneyFormatSettings.fractionDigits));
 
     _formattedAmount =
@@ -177,7 +177,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
 /// An utility instance
 class _Utility {
   /// return Zero with spesific fraction digits length
-  static double zeroWithFractionDigits({int fractionDigits = 2}) {
+  static double zeroWithFractionDigits({int fractionDigits = 0}) {
     return double.parse(0.toStringAsFixed(fractionDigits));
   }
 
