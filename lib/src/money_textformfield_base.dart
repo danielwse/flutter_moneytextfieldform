@@ -150,9 +150,9 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
             textAlign: TextAlign.right,
             style: wsa.inputStyle,
             keyboardType:
-                TextInputType.numberWithOptions(decimal: true, signed: true),
+                TextInputType.numberWithOptions(decimal: false, signed: false),
             decoration: InputDecoration(
-              icon: wsa.icon,
+              icon: Icon(Icons.ac_unit),
               labelText: wsa.labelText,
               hintText: wsa.hintText,
               labelStyle: wsa.labelStyle,
