@@ -83,7 +83,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
 
     // fmf handler
     _fmf = _fmf.copyWith(
-        amount: wsm.amount.toDouble(),
+        amount: wsm.amount,
         symbol: wsm.currencySymbol,
         fractionDigits: wsm.fractionDigits,
         thousandSeparator: wsm.thousandSeparator,
@@ -123,7 +123,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
 
     _fmf = _fmf.copyWith(
         amount: _Utility.stringToDouble(ws.controller.text != 'Not Set' ? 
-        (double.parse(ws.controller.text) * 0.01 * widget.maxSpend).toString() : 0 ,
+        (double.parse(ws.controller.text) * 0.01 * widget.maxSpend).toString() : '0' ,
             fractionDigits: ws.moneyFormatSettings.fractionDigits));
 
     _formattedAmount =
