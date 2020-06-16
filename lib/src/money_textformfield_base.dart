@@ -49,8 +49,9 @@ import 'package:moneytextformfield/src/models/money_textformfield_settings.dart'
 
 /// Instance of [MoneyTextFormField] widget
 class MoneyTextFormField extends StatefulWidget {
+  final double maxSpend;
   /// Instance constructor
-  MoneyTextFormField({@required this.settings}) {
+  MoneyTextFormField({@required this.settings, this.maxSpend}) {
     settings
       ..moneyFormatSettings =
           settings.moneyFormatSettings ?? MoneyFormatSettings()
@@ -121,7 +122,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
     MoneyTextFormFieldSettings ws = widget.settings;
 
     _fmf = _fmf.copyWith(
-        amount: _Utility.stringToDouble((double.parse(ws.controller.text) * 100).toString() ,
+        amount: _Utility.stringToDouble((double.parse(ws.controller.text) * widget.maxSpend).toString() ,
             fractionDigits: ws.moneyFormatSettings.fractionDigits));
 
     _formattedAmount =
@@ -147,12 +148,12 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
             inputFormatters: ws.inputFormatters,
             validator: ws.validator,
             enabled: ws.enabled,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.right,
             style: wsa.inputStyle,
             keyboardType:
-                TextInputType.numberWithOptions(decimal: false, signed: false),
+                TextInputType.numberWithOptions(decimal: true, signed: true),
             decoration: InputDecoration(
-              icon: Icon(Icons.ac_unit),
+              icon: wsa.icon,
               labelText: wsa.labelText,
               hintText: wsa.hintText,
               labelStyle: wsa.labelStyle,
