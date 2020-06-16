@@ -40,7 +40,7 @@ import 'package:moneytextformfield/src/models/money_display_format.dart';
 
 class MoneyFormatSettings {
   MoneyFormatSettings(
-      {this.amount,
+      {this.amount = 100,
       this.fractionDigits = 2,
       this.currencySymbol = '\$',
       this.thousandSeparator = ',',
