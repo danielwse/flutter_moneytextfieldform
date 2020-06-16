@@ -70,7 +70,7 @@ class MoneyTextFormField extends StatefulWidget {
 }
 
 class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
-  FlutterMoneyFormatter _fmf = new FlutterMoneyFormatter(amount: 0.0);
+  FlutterMoneyFormatter _fmf = new FlutterMoneyFormatter(amount: 0);
   String _formattedAmount;
   bool _useInternalController = false;
 
@@ -106,7 +106,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
       ws.inputFormatters = List<TextInputFormatter>();
 
     ws.inputFormatters.insertAll(0, <TextInputFormatter>[
-      WhitelistingTextInputFormatter(RegExp('[\-0-9.]')),
+      WhitelistingTextInputFormatter(RegExp('[\0-9]')),
       BlacklistingTextInputFormatter(RegExp('\s'))
     ]);
   }
