@@ -121,7 +121,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
     MoneyTextFormFieldSettings ws = widget.settings;
 
     _fmf = _fmf.copyWith(
-        amount: _Utility.stringToDouble(ws.controller.text,
+        amount: _Utility.stringToDouble((double.parse(ws.controller.text) * 100).toString() ,
             fractionDigits: ws.moneyFormatSettings.fractionDigits));
 
     _formattedAmount =
