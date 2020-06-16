@@ -156,10 +156,9 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
                 TextInputType.numberWithOptions(),
             decoration: InputDecoration(
               suffixIcon:  IconButton(
-                      icon: Icon(Icons.clear),
+                      icon: Icon(Icons.undo),
                       onPressed: () {
-                        ws.controller.clear();
-                        ws.controller.text = '0';
+                        ws.controller.text = "Not Set";
                       }),
               icon: wsa.icon,
               labelText: wsa.labelText,
