@@ -48,7 +48,7 @@ class MoneyFormatSettings {
       this.symbolAndNumberSeparator = ' ',
       this.displayFormat = MoneyDisplayFormat.symbolOnLeft});
 
-  int amount;
+  double amount;
   int fractionDigits;
   String currencySymbol;
   String thousandSeparator;
