@@ -98,7 +98,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
       _useInternalController = true;
     }
 
-    ws.controller.text = '0';
+    ws.controller.text = 'Not Set';
     ws.controller.addListener(_onChanged);
 
     // inputFormatter handler
@@ -122,7 +122,8 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
     MoneyTextFormFieldSettings ws = widget.settings;
 
     _fmf = _fmf.copyWith(
-        amount: _Utility.stringToDouble((double.parse(ws.controller.text) * 0.01 * widget.maxSpend).toString() ,
+        amount: _Utility.stringToDouble(ws.controller.text != 'Not Set' ? 
+        (double.parse(ws.controller.text) * 0.01 * widget.maxSpend).toString() : 0 ,
             fractionDigits: ws.moneyFormatSettings.fractionDigits));
 
     _formattedAmount =
@@ -144,7 +145,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           TextFormField(
-            autovalidate: true, 
+            autovalidate: false, 
             controller: ws.controller,
             inputFormatters: ws.inputFormatters,
             validator: ws.validator,
