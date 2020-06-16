@@ -98,7 +98,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
       _useInternalController = true;
     }
 
-    ws.controller.text = '${_fmf.amount}';
+    ws.controller.text = '0';
     ws.controller.addListener(_onChanged);
 
     // inputFormatter handler
@@ -144,7 +144,6 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           TextFormField(
-            initialValue: '0',
             controller: ws.controller,
             inputFormatters: ws.inputFormatters,
             validator: ws.validator,
