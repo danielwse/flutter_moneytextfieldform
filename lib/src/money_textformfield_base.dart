@@ -174,7 +174,6 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
             ),
           ),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
             Padding(
               padding: EdgeInsets.only(top: 8.0),
@@ -183,6 +182,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
                 style: wsa.formattedStyle,
               ),
             ),
+            Spacer(),
             Padding(
               padding: EdgeInsets.only(top: 8.0),
               child: Text(
