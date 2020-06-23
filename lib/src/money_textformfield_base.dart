@@ -50,8 +50,10 @@ import 'package:moneytextformfield/src/models/money_textformfield_settings.dart'
 /// Instance of [MoneyTextFormField] widget
 class MoneyTextFormField extends StatefulWidget {
   final double maxSpend;
+  final double percentRemainder;
+
   /// Instance constructor
-  MoneyTextFormField({@required this.settings, this.maxSpend}) {
+  MoneyTextFormField({@required this.settings, this.maxSpend, this.percentRemainder}) {
     settings
       ..moneyFormatSettings =
           settings.moneyFormatSettings ?? MoneyFormatSettings()
@@ -98,7 +100,8 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
       _useInternalController = true;
     }
 
-    ws.controller.text = widget.maxSpend == null ? "Set A Max Spend" : 'Not Set';
+    ws.controller.text =
+        widget.maxSpend == null ? "Set A Max Spend" : 'Not Set';
     ws.controller.addListener(_onChanged);
 
     // inputFormatter handler
@@ -122,8 +125,11 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
     MoneyTextFormFieldSettings ws = widget.settings;
 
     _fmf = _fmf.copyWith(
-        amount: _Utility.stringToDouble(ws.controller.text != 'Not Set' || widget.maxSpend == null ? 
-        (double.parse(ws.controller.text) * 0.01 * widget.maxSpend).toString() : '0' ,
+        amount: _Utility.stringToDouble(
+            ws.controller.text != 'Not Set' || widget.maxSpend == null
+                ? (double.parse(ws.controller.text) * 0.01 * widget.maxSpend)
+                    .toString()
+                : '0',
             fractionDigits: ws.moneyFormatSettings.fractionDigits));
 
     _formattedAmount =
@@ -131,7 +137,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
 
     if (widget.settings.onChanged != null) widget.settings.onChanged();
     if (this.mounted) {
-    setState(() {});
+      setState(() {});
     }
   }
 
@@ -152,14 +158,13 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
             enabled: ws.enabled,
             textAlign: TextAlign.center,
             style: wsa.inputStyle,
-            keyboardType:
-                TextInputType.numberWithOptions(),
+            keyboardType: TextInputType.numberWithOptions(),
             decoration: InputDecoration(
-              suffixIcon:  IconButton(
-                      icon: Icon(Icons.undo),
-                      onPressed: () {
-                        ws.controller.text = "Not Set";
-                      }),
+              suffixIcon: IconButton(
+                  icon: Icon(Icons.undo),
+                  onPressed: () {
+                    ws.controller.text = "Not Set";
+                  }),
               icon: wsa.icon,
               labelText: wsa.labelText,
               hintText: wsa.hintText,
@@ -167,14 +172,24 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
               errorStyle: wsa.errorStyle,
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(top: 8.0),
-            child: Text(
-              _formattedAmount,
-              textAlign: TextAlign.right,
-              style: wsa.formattedStyle,
+          Row(children: [
+            Padding(
+              padding: EdgeInsets.only(top: 8.0),
+              child: Text(
+                _formattedAmount,
+                textAlign: TextAlign.right,
+                style: wsa.formattedStyle,
+              ),
             ),
-          )
+            Padding(
+              padding: EdgeInsets.only(top: 8.0),
+              child: Text(
+                "Remaining: ${widget.percentRemainder} + '\%' ",
+                textAlign: TextAlign.left,
+                style: wsa.formattedStyle,
+              ),
+            )
+          ])
         ],
       ),
     );
