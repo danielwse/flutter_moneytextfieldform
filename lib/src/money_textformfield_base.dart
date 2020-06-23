@@ -101,7 +101,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
       _useInternalController = true;
     }
 
-    
+    ws.controller.clear(); 
     ws.controller.addListener(_onChanged);
 
     // inputFormatter handler
