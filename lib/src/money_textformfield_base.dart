@@ -101,8 +101,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
       _useInternalController = true;
     }
 
-    ws.controller.text =
-        widget.maxSpend == null ? "Set A Max Spend" : 'Not Set';
+    
     ws.controller.addListener(_onChanged);
 
     // inputFormatter handler
@@ -127,7 +126,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
 
     _fmf = _fmf.copyWith(
         amount: _Utility.stringToDouble(
-            ws.controller.text != 'Not Set' || widget.maxSpend == null
+            widget.maxSpend == null
                 ? (double.parse(ws.controller.text) * 0.01 * widget.maxSpend)
                     .toString()
                 : '0',
