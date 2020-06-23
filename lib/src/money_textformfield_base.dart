@@ -126,7 +126,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
 
     _fmf = _fmf.copyWith(
         amount: _Utility.stringToDouble(
-            widget.maxSpend == null
+            widget.maxSpend != null
                 ? (double.parse(ws.controller.text) * 0.01 * widget.maxSpend)
                     .toString()
                 : '0',
