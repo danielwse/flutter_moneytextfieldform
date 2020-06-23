@@ -53,7 +53,8 @@ class MoneyTextFormField extends StatefulWidget {
   final double percentRemainder;
 
   /// Instance constructor
-  MoneyTextFormField({@required this.settings, this.maxSpend, this.percentRemainder}) {
+  MoneyTextFormField(
+      {@required this.settings, this.maxSpend, this.percentRemainder}) {
     settings
       ..moneyFormatSettings =
           settings.moneyFormatSettings ?? MoneyFormatSettings()
@@ -172,23 +173,23 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
               errorStyle: wsa.errorStyle,
             ),
           ),
-          Row(children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
             Padding(
               padding: EdgeInsets.only(top: 8.0),
               child: Text(
-                _formattedAmount,
-                textAlign: TextAlign.right,
+                "Remaining: ${widget.percentRemainder}" + '\%' ,
                 style: wsa.formattedStyle,
               ),
             ),
             Padding(
               padding: EdgeInsets.only(top: 8.0),
               child: Text(
-                "Remaining: ${widget.percentRemainder} + '\%' ",
-                textAlign: TextAlign.left,
+                _formattedAmount,
                 style: wsa.formattedStyle,
               ),
-            )
+            ),
           ])
         ],
       ),
