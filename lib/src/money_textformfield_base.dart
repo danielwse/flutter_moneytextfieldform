@@ -101,7 +101,7 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
       _useInternalController = true;
     }
 
-    ws.controller.clear(); 
+    ws.controller.clear();
     ws.controller.addListener(_onChanged);
 
     // inputFormatter handler
@@ -158,12 +158,12 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
             enabled: ws.enabled,
             textAlign: TextAlign.center,
             style: wsa.inputStyle,
-            keyboardType: TextInputType.numberWithOptions(),
+            keyboardType: TextInputType.numberWithOptions(decimal: false),
             decoration: InputDecoration(
               suffixIcon: IconButton(
                   icon: Icon(Icons.clear),
                   onPressed: () {
-                    ws.controller.clear(); 
+                    ws.controller.clear();
                   }),
               icon: wsa.icon,
               labelText: wsa.labelText,
@@ -172,12 +172,11 @@ class _MoneyTextFormFieldState extends State<MoneyTextFormField> {
               errorStyle: wsa.errorStyle,
             ),
           ),
-          Row(
-            children: [
+          Row(children: [
             Padding(
               padding: EdgeInsets.only(top: 8.0),
               child: Text(
-                "Remaining: ${widget.percentRemainder}" + '\%' ,
+                "Remaining: ${widget.percentRemainder}" + '\%',
                 style: wsa.formattedStyle,
               ),
             ),
